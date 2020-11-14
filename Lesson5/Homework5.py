@@ -23,10 +23,8 @@ list_2 = []  # Create blank list_2
 i = 0
 
 while i < 10:
-    list_1_element = random.randint(1, 10)  # Generate random element for list_1
-    list_2_element = random.randint(1, 10)  # Generate random element for list_2
-    list_1.append(list_1_element)  # Add random element to list_1
-    list_2.append(list_2_element)  # Add random element to list_2
+    list_1.append(random.randint(1, 10))  # Add random element to list_1
+    list_2.append(random.randint(1, 10))  # Add random element to list_2
     i += 1
 
 list_3 = list(set(list_1) & set(list_2))  # Generate list_3
