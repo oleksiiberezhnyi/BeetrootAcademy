@@ -22,9 +22,8 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -286,7 +285,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -354,10 +353,11 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="432" y="120" key="SettingsEditor/0.0.1920.1151@0.0.1920.1151" timestamp="1605771001392" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1605771606090">
-      <screen x="0" y="0" width="1920" height="1151" />
+    <state x="560" y="356" key="Vcs.Push.Dialog.v2" timestamp="1605773406270">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1605771606090" />
+    <state x="560" y="356" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1605773406270" />
     <state x="762" y="521" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605266477730">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
