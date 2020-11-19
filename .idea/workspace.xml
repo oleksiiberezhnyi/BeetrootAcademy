@@ -22,14 +22,16 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="Тестовий файл уроку №8" />
+    <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="restore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework2.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework2.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +48,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="homework_1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,6 +67,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.scopes" />
   </component>
@@ -272,7 +275,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605768295047</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="restore">
+      <created>1605771857399</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605771857399</updated>
+    </task>
+    <task id="LOCAL-00012" summary="restore">
+      <created>1605771947864</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1605771947864</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,7 +303,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -310,7 +327,9 @@
     <MESSAGE value="Тестовий файл уроку №8" />
     <MESSAGE value="Delete files" />
     <MESSAGE value="Create main file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create main file" />
+    <MESSAGE value="restore" />
+    <option name="LAST_COMMIT_MESSAGE" value="restore" />
+    <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -318,6 +337,10 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="424" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1151@0.0.1920.1151" timestamp="1605253025399" />
+    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1605772284092">
+      <screen x="0" y="23" width="1920" height="1128" />
+    </state>
+    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1605772284092" />
     <state x="771" y="526" key="Github.CreateGistDialog" timestamp="1605252517102">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
@@ -354,10 +377,14 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="432" y="120" key="SettingsEditor/0.0.1920.1151@0.0.1920.1151" timestamp="1605771001392" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1605771606090">
+    <state x="814" y="521" key="VCS.ChangelistChooser" timestamp="1605771930568">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1605771606090" />
+    <state x="814" y="521" key="VCS.ChangelistChooser/0.0.1920.1151@0.0.1920.1151" timestamp="1605771930568" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1605772378686">
+      <screen x="0" y="0" width="1920" height="1151" />
+    </state>
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1605772378686" />
     <state x="762" y="521" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605266477730">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
