@@ -29,8 +29,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="restore">
+      <change afterPath="$PROJECT_DIR$/homework8.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homework2.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="homework_1" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -77,7 +78,7 @@
       <recent name="$PROJECT_DIR$/" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.homework8">
     <configuration name="Homework5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BeetrootAcademy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,27 +92,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lesson5/Homework5.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="example_def" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="BeetrootAcademy" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lesson6" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lesson6/example_def.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -162,6 +142,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="homework8" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BeetrootAcademy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homework8.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BeetrootAcademy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -185,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.homework8" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.homework7" />
         <item itemvalue="Python.homework6" />
         <item itemvalue="Python.Homework5" />
-        <item itemvalue="Python.example_def" />
       </list>
     </recent_temporary>
   </component>
@@ -349,22 +350,26 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="808" y="504" key="Github.ShareDialog/0.0.1920.1151@0.0.1920.1151" timestamp="1605253775062" />
-    <state width="1899" height="344" key="GridCell.Tab.0.bottom" timestamp="1605770557774">
-      <screen x="0" y="0" width="1920" height="1151" />
+    <state width="1899" height="313" key="GridCell.Tab.0.bottom" timestamp="1605779162020">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1899" height="344" key="GridCell.Tab.0.bottom/0.0.1920.1151@0.0.1920.1151" timestamp="1605770557774" />
-    <state width="1899" height="344" key="GridCell.Tab.0.center" timestamp="1605770557773">
-      <screen x="0" y="0" width="1920" height="1151" />
+    <state width="1899" height="313" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1605779162020" />
+    <state width="1899" height="313" key="GridCell.Tab.0.center" timestamp="1605779162019">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1899" height="344" key="GridCell.Tab.0.center/0.0.1920.1151@0.0.1920.1151" timestamp="1605770557773" />
-    <state width="1899" height="344" key="GridCell.Tab.0.left" timestamp="1605770557773">
-      <screen x="0" y="0" width="1920" height="1151" />
+    <state width="1899" height="313" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1605779162019" />
+    <state width="1899" height="313" key="GridCell.Tab.0.left" timestamp="1605779162019">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1899" height="344" key="GridCell.Tab.0.left/0.0.1920.1151@0.0.1920.1151" timestamp="1605770557773" />
-    <state width="1899" height="344" key="GridCell.Tab.0.right" timestamp="1605770557774">
-      <screen x="0" y="0" width="1920" height="1151" />
+    <state width="1899" height="313" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1605779162019" />
+    <state width="1899" height="313" key="GridCell.Tab.0.right" timestamp="1605779162019">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1899" height="344" key="GridCell.Tab.0.right/0.0.1920.1151@0.0.1920.1151" timestamp="1605770557774" />
+    <state width="1899" height="313" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1605779162019" />
     <state x="192" y="129" key="MergeDialog" timestamp="1605771469518">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
