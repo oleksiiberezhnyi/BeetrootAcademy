@@ -26,8 +26,7 @@ def two_numbers():
     try:
         a = int(input("a = "))
         b = int(input("b = "))
-        c = a ** 2 / b
-        return c
+        return a ** 2 / b
     except (TypeError, ValueError):
         print("Це не числа!")
     except ZeroDivisionError:
