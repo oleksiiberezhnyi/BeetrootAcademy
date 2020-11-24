@@ -28,7 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="restore" />
+    <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="111" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -288,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605771947864</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="111">
+      <created>1606206625396</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1606206625396</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -327,7 +334,8 @@
     <MESSAGE value="Delete files" />
     <MESSAGE value="Create main file" />
     <MESSAGE value="restore" />
-    <option name="LAST_COMMIT_MESSAGE" value="restore" />
+    <MESSAGE value="111" />
+    <option name="LAST_COMMIT_MESSAGE" value="111" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -368,10 +376,10 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="192" y="129" key="MergeDialog/0.0.1920.1151@0.0.1920.1151" timestamp="1605771469518" />
-    <state x="603" y="370" key="MultipleFileMergeDialog" timestamp="1605771469900">
+    <state x="603" y="370" key="MultipleFileMergeDialog" timestamp="1606206702183">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
-    <state x="603" y="370" key="MultipleFileMergeDialog/0.0.1920.1151@0.0.1920.1151" timestamp="1605771469900" />
+    <state x="603" y="370" key="MultipleFileMergeDialog/0.0.1920.1151@0.0.1920.1151" timestamp="1606206702183" />
     <state x="432" y="120" key="SettingsEditor" timestamp="1605771001392">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
@@ -384,10 +392,10 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="814" y="521" key="VCS.ChangelistChooser/0.0.1920.1151@0.0.1920.1151" timestamp="1605771930568" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1606206580144">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1606206691937">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1606206580144" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1606206691937" />
     <state x="762" y="521" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605266477730">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
