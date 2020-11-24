@@ -28,7 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="111" />
+    <list default="true" id="5c49aa97-8cd2-46a5-ba3f-f4ceca81c381" name="Default Changelist" comment="add other homework" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,6 +65,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -295,7 +296,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606206625396</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="mod">
+      <created>1606207827947</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1606207827947</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add other homework">
+      <created>1606207894434</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606207894434</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -335,7 +350,9 @@
     <MESSAGE value="Create main file" />
     <MESSAGE value="restore" />
     <MESSAGE value="111" />
-    <option name="LAST_COMMIT_MESSAGE" value="111" />
+    <MESSAGE value="mod" />
+    <MESSAGE value="add other homework" />
+    <option name="LAST_COMMIT_MESSAGE" value="add other homework" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -392,10 +409,10 @@
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
     <state x="814" y="521" key="VCS.ChangelistChooser/0.0.1920.1151@0.0.1920.1151" timestamp="1605771930568" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1606206691937">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1606207906173">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1606206691937" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1151@0.0.1920.1151" timestamp="1606207906173" />
     <state x="762" y="521" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605266477730">
       <screen x="0" y="0" width="1920" height="1151" />
     </state>
