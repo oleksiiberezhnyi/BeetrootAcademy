@@ -55,21 +55,23 @@ class Product:
         self.name = name
         self.price = price
 
-class ProductStore(Product):
+    def __str__(self):
+        return f"\"type\": {self.type}, \"name\": {self.name}, \"price\": {self.price}"
 
-    # def __init__(self, type_of_product, name, price, dict_of_product):
-    #     self.dict_of_products = dict_of_product
-        # {"type": self.type, "name": self.name, "price": self.price}
 
-    list_of_products = []
+class ProductStore:
 
-    def add(self, product: dict):
-        super().__init__(type_of_product, name, price)
-        return product
+    # def __init__(self):
+    #     self.list_of_product = []
 
-#
-#     def set_discount(self, identifier, percent, identifier_type = "name"):
-#         pass
+    def add(self, product: dict, amount: int):
+        dict_of_product = product.__dict__
+        dict_of_product.update({"amount": amount})
+        print(dict_of_product)
+
+    # def set_discount(self, identifier, percent, identifier_type="name"):
+    #     global list_of_product
+    #     list_of_product.get("identifier")
 #
 #     def sell_product(self, product_name, amount):
 #         pass
@@ -82,9 +84,14 @@ class ProductStore(Product):
 #
 #     def get_product_info(self, product_name):
 #         pass
+
 p = Product("Sport", "Football T-Shirt", 100)
 p2 = Product("Food", "Ramen", 1.5)
-print(p, p2)
+p3 = Product("Sport", "Rasd,", 23)
+# print(f"{p} {p2}")
 s = ProductStore()
-s.add(p)
+s.add(p, 10)
+s.add(p2, 300)
+s.add(p3, 20)
 print(s)
+# print(s.set_discount("Sport", 10))
