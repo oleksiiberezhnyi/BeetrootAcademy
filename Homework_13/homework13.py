@@ -14,15 +14,11 @@ print(test_function.__code__.co_nlocals)
 
 # Task 2
 
-def function_outside():
-    def function_inside(pow):
-        res = [(i, i ** pow) for i in range(1, pow ** pow, pow * 2)]
-        return res
-
-    return function_inside
+def function_outside(function_inside, pow):
+    return function_inside(
+        [(i, i ** pow) for i in range(1, pow ** pow, pow * 2)])
 
 
-print(function_outside()(2))
 
 
 # Task 3
