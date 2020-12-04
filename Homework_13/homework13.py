@@ -1,7 +1,8 @@
-import random
-
-
 # Task 1
+
+def number_of_locals(func):
+    return func.__code__.co_nlocals
+
 
 def test_function():
     a = 1
@@ -9,17 +10,19 @@ def test_function():
     c = "string"
 
 
-print(test_function.__code__.co_nlocals)
+print(number_of_locals(test_function))
 
 
 # Task 2
 
-def function_outside(function_inside, pow):
-    return function_inside(
-        [(i, i ** pow) for i in range(1, pow ** pow, pow * 2)])
+def function_outside(pow):
+    def function_inside(pow2):
+        return [(i, i ** pow) for i in range(1, pow ** pow2, pow2 * 2)]
+
+    return function_inside
 
 
-
+print(function_outside(4)(1))
 
 # Task 3
 
@@ -28,6 +31,7 @@ def choose_func(nums: list, func1, func2):
     for i in nums:
         if i < 0:
             negative = 1
+            break
     if negative > 0:
         return func2(nums)
     else:
