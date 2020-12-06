@@ -4,7 +4,7 @@
 
 
 def logger(func):
-    def wraper(*args):
+    def wraper(*args, **kwargs):
         print(f"{func.__name__} called with "
               f"{', '.join(str(arg) for arg in args)}")
 
@@ -30,14 +30,11 @@ square_all(4, 5, 6, 7)
 
 def stop_words(words: list):
     def wrap(func):
-        def string_edited(*args: str):
-            list_of_words = func("".join(args))[:-1].split()
-            for i in list_of_words:
-                for j in words:
-                    if i == j:
-                        list_of_words[list_of_words.index(j)] = "*"
-                        censored_text = " ".join(list_of_words)
-            return censored_text
+        def string_edited(*args, **kwargs):
+            result = func(*args, **kwargs)
+            for i in words:
+                result = result.replace(i, "*")
+            return result
 
         return string_edited
 
@@ -67,12 +64,12 @@ def arg_rules(type_: type, max_lenght: int, contains: list):
                 errors.append(
                     f"\n— Text length is more than {max_lenght} characters"
                 )
-            if True:
-                for i in contains:
-                    if "".join(args).find(i) == -1:
-                        errors.append(f'\n— Not found "{i}"')
+            for i in contains:
+                if "".join(args).find(i) == -1:
+                    errors.append(f'\n— Not found "{i}"')
             if len(errors) > 0:
-                return f'Your mistakes: {", ".join(errors)}'
+                print(f'Your mistakes: {", ".join(errors)}')
+                return False
             else:
                 return func("".join(args))
 
@@ -81,7 +78,7 @@ def arg_rules(type_: type, max_lenght: int, contains: list):
     return wrap
 
 
-@arg_rules(str, 15, ["com", "@"])
+@arg_rules(str, 10, ["com", "@"])
 def create_slogan(name: str):
     return f"{name} drinks pepsi in his brand new BMW!"
 
