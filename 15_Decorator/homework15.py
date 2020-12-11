@@ -10,25 +10,20 @@ class Validate:
 
     def __init__(self, email):
         self._email = email
-
-    def validate(self):
         if self._email.find('@') > 0:
             email_prefix, email_domain = self._email.split('@')
             for i in email_prefix:
-                for j in self.NOT_VALID_PREFIX_CHARACTER:
-                    if i == j:
-                        raise Exception(f'Not Valid e-mail address. \
-                         Character "{j}" not valid.')
+                if i in self.NOT_VALID_PREFIX_CHARACTER:
+                    raise Exception(f'Not Valid e-mail address. '
+                                    f'Character "{i}" not valid.')
             if email_prefix.find("..") > 0 or email_prefix[0] == '.' or \
                     email_prefix[-1] == '.':
                 raise Exception(f"Not Valid e-mail address.")
 
             for i in email_domain:
-                for j in self.NOT_VALID_DOMAIN_CHARACTER:
-                    if i == j:
-                        raise Exception(
-                            f'Not Valid e-mail domain. \
-                            Character "{j}" not valid.')
+                if i in self.NOT_VALID_DOMAIN_CHARACTER:
+                    raise Exception(f'Not Valid e-mail domain. '
+                                    f'Character "{i}" not valid.')
             if email_prefix.find("..") > 0 or email_prefix[0] == '.' or \
                     email_prefix[-1] == '.':
                 raise Exception(f"Not Valid e-mail address.")
@@ -42,7 +37,6 @@ class Validate:
 
 
 mail = Validate('o.v.ber@me.com')
-mail.validate()
 
 
 # Task 2
@@ -54,30 +48,29 @@ class Boss:
         self.id = id_
         self.name = name
         self.company = company
-        self.workers = []
+        self._workers = []
 
-    def __repr__(self):
-        return f'Boss("{self.id}",' \
-               f'"{self.name}",' \
-               f'"{self.company}",' \
-               f'"{self.workers}")'
-
-    def __str__(self):
-        return f'id = {self.id},' \
-               f'name = {self.name},' \
-               f'company = {self.company},' \
-               f'workers = {self.workers}'
+    def add_worker(self, worker: 'Worker'):
+        self._workers.append(worker)
 
     @property
     def worker(self):
         return f'Boss("{self.id}",' \
                f'"{self.name}",' \
                f'"{self.company}",' \
-               f'"{self.workers}")'
+               f'"{self._workers}")'
 
-    @worker.setter
-    def worker(self, info):
-        self.workers.append(info)
+    def __repr__(self):
+        return f'Boss({self.id},' \
+               f'"{self.name}",' \
+               f'"{self.company}",' \
+               f'"{self._workers}")'
+
+    def __str__(self):
+        return f'id = {self.id},' \
+               f'name = {self.name},' \
+               f'company = {self.company},' \
+               f'workers = {self._workers}'
 
 
 class Worker:
@@ -86,38 +79,39 @@ class Worker:
         self.id = id_
         self.name = name
         self.company = company
-        self.boss = boss
+        self._boss = boss
+
+    @property
+    def add_boss(self):
+        return self._boss
+
+    @add_boss.setter
+    def add_boss(self, boss: Boss):
+        if isinstance(boss, Boss):
+            self._boss = boss
+            boss.add_worker(self)
 
     def __repr__(self):
-        return f'Worker("{self.id}",' \
+        return f'Worker({self.id},' \
                f'"{self.name}",' \
                f'"{self.company}",' \
-               f'"{self.boss}")'
+               f'"{self._boss}")'
 
     def __str__(self):
         return f'Worker:(id = {self.id},' \
                f'name = {self.name},' \
                f'company = {self.company},' \
-               f'boss = {self.boss})'
-
-    def add(self, id_, name, company, boss):
-        self.id = id_
-        self.name = name
-        self.company = company
-        self.boss = boss
-        Boss.worker = {"id_": self.id,
-                       "name": self.name,
-                       "company": self.company}
+               f'boss = {self._boss})'
 
 
 boss1 = Boss(1, "Boss1", "Work1")
 boss2 = Boss(3, "Boss3", "Work4")
 worker1 = Worker(123, "Oleksii", "home", boss1)
 worker2 = Worker(321, "Anton", "home", boss1)
-worker3 = Worker(321, "Anton", "home", boss2)
-boss1.worker = worker1
-boss1.worker = worker2
-boss2.worker = worker3
+worker3 = Worker(321, "Viktor", "work", boss2)
+worker1.add_boss = boss1
+worker2.add_boss = boss2
+
 print(boss1, boss2, sep="\n")
 
 
@@ -125,8 +119,9 @@ print(boss1, boss2, sep="\n")
 
 class TypeDecorator:
 
-    def to_int(self):
-        @wraps(self)
+    @staticmethod
+    def to_int(func):
+        @wraps(func)
         def converter(*args, **kwargs):
             for arg in args:
                 if arg.isnumeric():
@@ -136,42 +131,41 @@ class TypeDecorator:
 
         return converter
 
-    def to_str(self):
-        @wraps(self)
+    @staticmethod
+    def to_str(func):
+        @wraps(func)
         def converter(*args, **kwargs):
             return str(' '.join(args))
 
         return converter
 
-    def to_bool(self):
-        @wraps(self)
+    @staticmethod
+    def to_bool(func):
+        @wraps(func)
         def converter(*args, **kwargs):
             return bool(' '.join(args))
 
         return converter
 
-    def to_float(self):
-        @wraps(self)
+    @staticmethod
+    def to_float(func):
+        @wraps(func)
         def converter(*args, **kwargs):
             for arg in args:
                 try:
                     if arg.find(".") > 0:
                         integer, decimal = arg.split(".")
-                        if integer.isnumeric() and decimal.isnumeric():
-                            return float(int(integer) + \
-                                         int(decimal) / (10 ** len(decimal)))
-                        else:
-                            return f"It's impossible"
                     elif arg.find(",") > 0:
                         integer, decimal = arg.split(",")
-                        if integer.isnumeric() and decimal.isnumeric():
-                            return float(int(integer) + \
-                                         int(decimal) / (10 ** len(decimal)))
-                        else:
-                            return f"It's impossible"
+                    else:
+                        return f"It's impossible"
+                    if integer.isnumeric() and decimal.isnumeric():
+                        return float(int(integer) + \
+                                     int(decimal) / (10 ** len(decimal)))
+                    else:
+                        return f"It's impossible"
                 except Exception:
                     return f"It's impossible"
-
         return converter
 
 
@@ -198,4 +192,4 @@ def do_nothing3(string: str):
 assert do_nothing("24") == 24
 assert do_nothing2("Berezhnyi Oleksii") == "Berezhnyi Oleksii"
 assert do_something("True") == True
-assert do_nothing3("24.234") == 24.234
+assert do_nothing3("24,234") == 24.234
