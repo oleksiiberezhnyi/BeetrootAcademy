@@ -82,11 +82,11 @@ class Worker:
         self._boss = boss
 
     @property
-    def add_boss(self):
+    def boss(self):
         return self._boss
 
-    @add_boss.setter
-    def add_boss(self, boss: Boss):
+    @boss.setter
+    def boss(self, boss: Boss):
         if isinstance(boss, Boss):
             self._boss = boss
             boss.add_worker(self)
