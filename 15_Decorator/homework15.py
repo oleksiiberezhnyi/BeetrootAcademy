@@ -109,8 +109,8 @@ boss2 = Boss(3, "Boss3", "Work4")
 worker1 = Worker(123, "Oleksii", "home", boss1)
 worker2 = Worker(321, "Anton", "home", boss1)
 worker3 = Worker(321, "Viktor", "work", boss2)
-worker1.add_boss = boss1
-worker2.add_boss = boss2
+worker1.boss = boss1
+worker2.boss = boss2
 
 print(boss1, boss2, sep="\n")
 
