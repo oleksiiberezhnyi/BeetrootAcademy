@@ -9,8 +9,8 @@ Homework 16. Iterators and Generators
 
 def with_index(iterable, start=0):
     for i in iterable:
+        yield start, i
         start += 1
-        yield start - 1, i
 
 
 s = {1, "string", 4, True}
