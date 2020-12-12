@@ -31,11 +31,11 @@ def in_range(start, end, step=1):
             yield start + abs(step)
 
 
-r = in_range(1, -100, -10)
+r = in_range(1, -10, -2)
 for i in r:
     print(i)
 print("*" * 80)
-for i in range(1, -100, -10):  #
+for i in range(1, -10, -2):  #
     print(i)
 
 
@@ -49,11 +49,20 @@ class Iterable:
         self._index = len(iterable)
         self._i = -1
 
-    def __getitem__(self, item):
+    # def __getitem__(self, item):
+    #     self._i += 1
+    #     return self._iterable[self._i]
+
+    def __iter__(self):
+        return (self)
+
+    def __next__(self):
         self._i += 1
+        if self._i == self._index:
+            raise StopIteration
         return self._iterable[self._i]
 
 
-iter = Iterable([2, 3, 5, 7])
+iter = Iterable("asdlaksdlajhs")
 for i in iter:
     print(i)
