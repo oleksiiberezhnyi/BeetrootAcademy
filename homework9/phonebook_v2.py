@@ -1,30 +1,16 @@
 import json
+import typing
 
-"""
-Extend Phonebook application
 
-Functionality of Phonebook application:
-
-    Add new entries 
-    Search by first name 
-    Search by last name 
-    Search by full name
-    Search by telephone number
-    Search by city or state
-    Delete a record for a given telephone number
-    Update a record for a given telephone number
-    An option to exit the program
-
-The first argument to the application should be the name of the phonebook.
-Application should load JSON data, if it is present in the folder with
-application, else raise an error. After the user exits, all data should be saved
- to loaded JSON.
- """
 phonebook = []
 
 
-def add_new_entries(first_name, last_name, telephone_number, city,
-                    phonebook_name="Default"):
+def add_new_entries(first_name: str,
+                    last_name: str,
+                    telephone_number: str,
+                    city: str,
+                    phonebook_name: str = "Default"
+                    ) -> typing.List[typing.Dict[str, str]]:
     phonebook.append({"Phonebook name": phonebook_name.title(),
                       "First name": first_name.title(),
                       "Last name": last_name.title(),
@@ -36,7 +22,7 @@ def add_new_entries(first_name, last_name, telephone_number, city,
     return phonebook
 
 
-def search_by_first_name(first_name):
+def search_by_first_name(first_name: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("First name") == first_name:
@@ -44,7 +30,7 @@ def search_by_first_name(first_name):
     return result
 
 
-def search_by_last_name(last_name):
+def search_by_last_name(last_name: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("Last name") == last_name:
@@ -52,7 +38,7 @@ def search_by_last_name(last_name):
     return result
 
 
-def search_by_full_name(full_name):
+def search_by_full_name(full_name: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("Full name") == full_name:
@@ -60,7 +46,8 @@ def search_by_full_name(full_name):
     return result
 
 
-def search_by_telephone_number(telephone_number):
+def search_by_telephone_number(telephone_number: str) -> typing.List[
+    typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("Telephone number") == telephone_number:
@@ -68,7 +55,7 @@ def search_by_telephone_number(telephone_number):
     return result
 
 
-def search_by_city(city):
+def search_by_city(city: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("City or state") == city:
@@ -76,14 +63,17 @@ def search_by_city(city):
     return result
 
 
-def delete_a_record_by_telephone_number(telephone_number):
+def delete_a_record_by_telephone_number(telephone_number: str) -> typing.List[
+    dict]:
     for i in phonebook:
         if i.get("Telephone number") == telephone_number:
             phonebook.remove(i)
     return phonebook
 
 
-def update_a_record_by_telephone_number(telephone_number, new_telephone_number):
+def update_a_record_by_telephone_number(telephone_number: str,
+                                        new_telephone_number: str
+                                        ) -> typing.List[typing.Dict[str, str]]:
     for i in phonebook:
         if i.get("Telephone number") == telephone_number:
             i["Telephone number"] = new_telephone_number
