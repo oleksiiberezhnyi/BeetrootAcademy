@@ -10,7 +10,7 @@ def add_new_entries(first_name: str,
                     telephone_number: str,
                     city: str,
                     phonebook_name: str = "Default"
-                    ) -> typing.List[dict]:
+                    ) -> typing.List[typing.Dict[str, str]]:
     phonebook.append({"Phonebook name": phonebook_name.title(),
                       "First name": first_name.title(),
                       "Last name": last_name.title(),
@@ -22,7 +22,7 @@ def add_new_entries(first_name: str,
     return phonebook
 
 
-def search_by_first_name(first_name: str) -> typing.List[dict]:
+def search_by_first_name(first_name: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("First name") == first_name:
@@ -30,7 +30,7 @@ def search_by_first_name(first_name: str) -> typing.List[dict]:
     return result
 
 
-def search_by_last_name(last_name: str) -> typing.List[dict]:
+def search_by_last_name(last_name: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("Last name") == last_name:
@@ -38,7 +38,7 @@ def search_by_last_name(last_name: str) -> typing.List[dict]:
     return result
 
 
-def search_by_full_name(full_name: str) -> typing.List[dict]:
+def search_by_full_name(full_name: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("Full name") == full_name:
@@ -46,7 +46,8 @@ def search_by_full_name(full_name: str) -> typing.List[dict]:
     return result
 
 
-def search_by_telephone_number(telephone_number: str) -> typing.List[dict]:
+def search_by_telephone_number(telephone_number: str) -> typing.List[
+    typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("Telephone number") == telephone_number:
@@ -54,7 +55,7 @@ def search_by_telephone_number(telephone_number: str) -> typing.List[dict]:
     return result
 
 
-def search_by_city(city: str) -> typing.List[dict]:
+def search_by_city(city: str) -> typing.List[typing.Dict[str, str]]:
     result = []
     for i in phonebook:
         if i.get("City or state") == city:
@@ -72,7 +73,7 @@ def delete_a_record_by_telephone_number(telephone_number: str) -> typing.List[
 
 def update_a_record_by_telephone_number(telephone_number: str,
                                         new_telephone_number: str
-                                        ) -> typing.List[dict]:
+                                        ) -> typing.List[typing.Dict[str, str]]:
     for i in phonebook:
         if i.get("Telephone number") == telephone_number:
             i["Telephone number"] = new_telephone_number
