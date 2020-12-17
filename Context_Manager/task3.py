@@ -26,18 +26,28 @@ def data_last_name():
 
 
 @pytest.fixture
-def data_email_name():
+def data_email():
     return "mail@me.com"
 
 
 @pytest.fixture
-def data_phone_name():
+def data_phone():
     return 380731737373
 
 
-def test_user_data(data_first_name, data_last_name, data_email_name,
-                   data_phone_name):
-    assert user_data(data_first_name, data_last_name, data_email_name,
-                     data_phone_name) \
-           == ["O.", "Berezhnyi", "Oleksii Berezhnyi", "mail@me.com",
-               380731737373]
+def test_user_data(data_first_name,
+                   data_last_name,
+                   data_email,
+                   data_phone
+                   ):
+    assert user_data(data_first_name,
+                     data_last_name,
+                     data_email,
+                     data_phone
+                     ) == \
+           ["O.",
+            "Berezhnyi",
+            "Oleksii Berezhnyi",
+            "mail@me.com",
+            380731737373
+            ]
