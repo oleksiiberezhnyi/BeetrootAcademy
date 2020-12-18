@@ -6,10 +6,8 @@ from typing import Union
 # Task 1
 
 
-def to_power(x: Union[int, float, None], exp: int) -> Union[int, float, None]:
-    if exp == 1:
-        return x
-    elif exp == 0:
+def to_power(x: Union[int, float], exp: int) -> Union[int, float]:
+    if exp == 0:
         return 1
     elif exp < 0:
         raise ValueError('This function works only with exp > 0')
@@ -58,7 +56,7 @@ def reverse(input_str: str) -> str:
     if len(input_str) == 0:
         return input_str
     else:
-        return reverse(input_str[1:]) + input_str[0]
+        return f'{reverse(input_str[1:])}{input_str[0]}'
 
 
 print(reverse("adrakadabra"))
