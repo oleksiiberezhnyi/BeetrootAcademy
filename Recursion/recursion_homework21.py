@@ -1,12 +1,12 @@
 # Berezhnyi Oleksii
 
-from typing import Optional
+from typing import Union
 
 
 # Task 1
 
 
-def to_power(x: Optional[int, float], exp: int) -> Optional[int, float]:
+def to_power(x: Union[int, float, None], exp: int) -> Union[int, float, None]:
     if exp == 1:
         return x
     elif exp == 0:
