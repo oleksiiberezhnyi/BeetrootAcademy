@@ -23,7 +23,7 @@ print(to_power(2, 1))
 # Task 2
 
 
-def is_palindrome(looking_str: str, index: int = 0) -> bool:
+def is_palindrome(looking_str: str) -> bool:
     if len(looking_str) == 0:
         return True
     else:
