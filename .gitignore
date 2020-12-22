@@ -6,3 +6,9 @@ N17_Modules_and_standatd_library/__pycache__
 N17_Modules_and_standatd_library/test.txt
 homework9/__pycache__
 homework9/phonebook.json
+.gitignore.swp
+Context_Manager/__pycache__
+Context_Manager/pytest.ini
+PyQt_Calculator/__pycache__/
+PyQt_Calculator/calculator.py
+__pycache__
