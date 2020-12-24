@@ -28,8 +28,7 @@ class Stack:
         
     def __repr__(self):
         represent = '<Stack>\n'
-        for i in reversed(self._stack):
-            represent += f'{i}\n'
+        represent += '\n'.join(reversed(self._queue))
         return represent
 
     def __str__(self):
@@ -77,7 +76,7 @@ print(balanced_brackets('print(reverse_order("Hello World!")'))
 # Task 3
 
 
-class Stack_Extend:
+class StackExtend:
 
     def __init__(self):
         self._stack = []
@@ -109,15 +108,14 @@ class Stack_Extend:
         
     def __repr__(self):
         represent = '<Stack>\n'
-        for i in reversed(self._stack):
-            represent += f'{i}\n'
+        represent += '\n'.join(reversed(self._stack))
         return represent
 
     def __str__(self):
         return self.__repr__()
 
 
-class Queue_Extend:
+class QueueExtend:
 
     def __init__(self):
         self._queue = []
@@ -148,16 +146,15 @@ class Queue_Extend:
         return self._queue[self._index]
         
     def __repr__(self):
-        represent = '<Queue>\n'
-        for i in reversed(self._queue):
-            represent += f'{i}\n'
+        represent = '<Queue>\n' 
+        represent += '\n'.join(reversed(self._queue))
         return represent
 
     def __str__(self):
         return self.__repr__()
 
 
-ext_list = Stack_Extend()
+ext_list = StackExtend()
 ext_list.append('1')
 ext_list.append('12')
 ext_list.append('456')
@@ -165,7 +162,7 @@ ext_list.append('34')
 ext_list.append('453')
 print(ext_list.get_from_stack('34'))
 
-ext_list2 = Queue_Extend()
+ext_list2 = QueueExtend()
 ext_list2.append('1')
 ext_list2.append('12')
 ext_list2.append('456')
