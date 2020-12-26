@@ -87,7 +87,6 @@ class UnorderedList:
 
     def __getitem__(self, item):
         self.result = None
-        print(f'_____ {self.result}')
         if isinstance(item, slice):
             start = item.start
             stop = item.stop
@@ -97,32 +96,29 @@ class UnorderedList:
             slice_list = range(start, stop, step)
             current_node = self.head
             current_index = 0
-            # print(f'0000 {self.result}')
             while current_node is not None:
-                # print(f'1 {current_node.get_data()}')
                 if current_index in slice_list:
                     new_data = Node(current_node.get_data())
-                    # print(f'new data {new_data}')
                     if self.result is None:
-                        # print(f'result {self.result}')
                         self.result = new_data
-                        # print((f'new result {self.result}'))
-                    prev_node = self.result
-                    # print(f'prevprevprev{self.result}')
-                    # print(f'prev_node {prev_node}')
-                    # print(f'prev_node next {prev_node.get_next()}')
-                    while prev_node.next is not None:
-                        prev_node = prev_node.next
-                        # print(f'next next {prev_node}')
-                    prev_node.set_next(new_data)
+                    else:
+                        prev_node = self.result
+                        while prev_node.next is not None:
+                            prev_node = prev_node.next
+                        prev_node.set_next(new_data)
                 current_node = current_node.next
-                # print(f'22 {current_node}')
                 current_index += 1
-
-
         if isinstance(item, int):
-            index = item
-            print(index)
+            if item > self._size():
+                raise IndexError
+            current_node = self.head
+            current_index = 0
+            while current_node is not None:
+                if current_index == item:
+                    new_data = Node(current_node.get_data())
+                    self.result = new_data
+                current_node = current_node.next
+                current_index += 1
         return self.result
 
     def __repr__(self):
@@ -150,6 +146,8 @@ print(l.index(45))
 l.insert(867, 1)
 print(l)
 print(len(l))
+print(l[4])
+print(l[2:4:1])
 
 
 # Task 2
@@ -185,12 +183,12 @@ class Stack:
 
     def __repr__(self):
         iter_node = self.head
-        result = ''
+        result = '<Stack>\n'
         if self.isempty():
             print("Stack Empty")
         else:
-            while (iter_node != None):
-                result += (f'{iter_node.data}\n|\nV\n ')
+            while (iter_node is not None):
+                result += (f'{iter_node.data}\n')
                 iter_node = iter_node.next
             return result
 
@@ -199,10 +197,10 @@ class Stack:
 
 
 stack_list = Stack()
-stack_list.push('sdkfj')
-stack_list.push('234')
-stack_list.push('asjhdg')
-stack_list.push(345)
+stack_list.push(1)
+stack_list.push(2)
+stack_list.push(3)
+stack_list.push(4)
 print(stack_list)
 stack_list.pop()
 print(stack_list)
@@ -241,12 +239,12 @@ class Queue:
 
     def __repr__(self):
         iter_node = self.head
-        result = ''
+        result = '<Queue>\n'
         if self.isempty():
             print("Queue Empty")
         else:
-            while (iter_node != None):
-                result += (f'{iter_node.data}\n|\nV\n ')
+            while (iter_node is not None):
+                result += (f'{iter_node.data}\n')
                 iter_node = iter_node.next
             return result
 
@@ -255,10 +253,10 @@ class Queue:
 
 
 queue_list = Queue()
-queue_list.push('sdkfj')
-queue_list.push('234')
-queue_list.push('asjhdg')
-queue_list.push(345)
+queue_list.push(1)
+queue_list.push(2)
+queue_list.push(3)
+queue_list.push(4)
 print(queue_list)
 queue_list.get()
 print(queue_list)
