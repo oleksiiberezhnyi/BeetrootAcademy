@@ -12,3 +12,4 @@ Context_Manager/pytest.ini
 PyQt_Calculator/__pycache__/
 PyQt_Calculator/calculator.py
 __pycache__
+/LinkedList/LinkedList2way.py

@@ -58,8 +58,8 @@ class UnorderedList:
     def pop(self):
         self.size -= 1
         result = self.tail
-        self.tail = self.tail._prev
-        self.tail._next = None
+        self.tail = self.tail.prev
+        self.tail.next = None
         return result
 
     def insert(self, data, index=-1):
@@ -74,13 +74,13 @@ class UnorderedList:
             raise ValueError('Node index overflow')
         while current_node is not None:
             if current_node_index == index:
-                prev_node._next = new_node
+                prev_node.next = new_node
                 new_node.prev = prev_node
                 new_node.next = current_node
                 self.size += 1
                 break
             prev_node = current_node
-            current_node = current_node._next
+            current_node = current_node.next
             current_node_index += 1
 
     def __len__(self):
@@ -100,7 +100,7 @@ class UnorderedList:
             while current_node is not None:
                 if current_index in slice_list:
                     copy_list.append(current_node.get_data())
-                current_node = current_node._next
+                current_node = current_node.next
                 current_index += 1
         if isinstance(item, int):
             if item > self.size:
@@ -110,7 +110,7 @@ class UnorderedList:
             while current_node is not None:
                 if current_index == item:
                     copy_list.append(current_node.get_data())
-                current_node = current_node._next
+                current_node = current_node.next
                 current_index += 1
         return copy_list
 
@@ -174,9 +174,9 @@ class Stack:
             return None
         else:
             prev_node = self.head
-            self.head = self.head._next
+            self.head = self.head.next
             prev_node._next = None
-            return prev_node._data
+            return prev_node.data
 
     def __repr__(self):
         iter_node = self.head
@@ -185,8 +185,8 @@ class Stack:
             print("Stack Empty")
         else:
             while iter_node is not None:
-                result += f'{iter_node._data}\n'
-                iter_node = iter_node._next
+                result += f'{iter_node.data}\n'
+                iter_node = iter_node.next
             return result
 
     def __str__(self):
@@ -238,8 +238,8 @@ class Queue:
             print("Queue Empty")
         else:
             while iter_node is not None:
-                result += f'{iter_node._data}\n'
-                iter_node = iter_node._next
+                result += f'{iter_node.data}\n'
+                iter_node = iter_node.next
             return result
 
     def __str__(self):
