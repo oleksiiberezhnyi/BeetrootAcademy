@@ -3,6 +3,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+        self.prev = None
 
     def get_data(self):
         return self.data
@@ -17,137 +18,136 @@ class Node:
         self.next = next
 
     def __repr__(self):
-        return f'{self.data} | {self.next}'
+        return f'{self.data}'
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __bool__(self):
+        return self.data is not None
 
 
 class UnorderedList:
 
     def __init__(self):
         self.head = None
+        self.tail = None
+        self.size = 0
 
-    def append(self, data = None):
-        new_data = Node(data)
+    def append(self, data=None):
+        self.size += 1
+        new_node = Node(data)
         if self.head is None:
-            self.head = new_data
-            return
-        prev_node = self.head
-        while prev_node.next:
-            prev_node = prev_node.next
-        prev_node.next = new_data
+            self.head = new_node
+            self.tail = new_node
+        if self.size > 1:
+            new_node.prev = self.tail
+        self.tail.next = new_node
+        self.tail = new_node
 
     def index(self, data):
         current_node = self.head
         node_id = 0
-        result = []
         while current_node is not None:
             if current_node.get_data() == data:
-                result.append(node_id)
+                return node_id
             current_node = current_node.get_next()
             node_id += 1
-        return result
+        raise ValueError(f'{data} not found')
 
     def pop(self):
-        current_node = self.head
-        prev_node = None
-        while current_node.get_next() is not None:
-            prev_node = current_node
-            current_node = current_node.get_next()
-        prev_node.set_next(None)
-        return
+        self.size -= 1
+        result = self.tail
+        self.tail = self.tail._prev
+        self.tail._next = None
+        return result
 
-    def insert(self, data, index = 0):
+    def insert(self, data, index=-1):
+        if index == -1:
+            self.append(data)
+            return
+        new_node = Node(data)
+        current_node_index = 0
         current_node = self.head
-        prev_node = None
-        new_data = Node(data)
-        idx = 0
-        while current_node is not None and idx < index:
-            prev_node = current_node
-            current_node = current_node.get_next()
-            idx += 1
-        if index == 0:
-            new_data.set_next(self.head)
-            self.head = new_data
-        else:
-            if current_node is None:
-                prev_node.set_next(new_data)
-            else:
-                new_data.set_next(current_node)
-                prev_node.set_next(new_data)
-
-    def _size(self):
-        current_node = self.head
-        size = 0
+        prev_node = self.head
+        if index > self.size:
+            raise ValueError('Node index overflow')
         while current_node is not None:
-            current_node = current_node.get_next()
-            size += 1
-        return size
+            if current_node_index == index:
+                prev_node._next = new_node
+                new_node.prev = prev_node
+                new_node.next = current_node
+                self.size += 1
+                break
+            prev_node = current_node
+            current_node = current_node._next
+            current_node_index += 1
 
     def __len__(self):
-        return self._size()
+        return self.size
 
     def __getitem__(self, item):
-        self.result = None
+        copy_list = UnorderedList()
         if isinstance(item, slice):
             start = item.start
             stop = item.stop
             step = item.step
-            if stop > self._size():
+            if stop > self.size:
                 raise IndexError
             slice_list = range(start, stop, step)
             current_node = self.head
             current_index = 0
             while current_node is not None:
                 if current_index in slice_list:
-                    new_data = Node(current_node.get_data())
-                    if self.result is None:
-                        self.result = new_data
-                    else:
-                        prev_node = self.result
-                        while prev_node.next is not None:
-                            prev_node = prev_node.next
-                        prev_node.set_next(new_data)
-                current_node = current_node.next
+                    copy_list.append(current_node.get_data())
+                current_node = current_node._next
                 current_index += 1
         if isinstance(item, int):
-            if item > self._size():
+            if item > self.size:
                 raise IndexError
             current_node = self.head
             current_index = 0
             while current_node is not None:
                 if current_index == item:
-                    new_data = Node(current_node.get_data())
-                    self.result = new_data
-                current_node = current_node.next
+                    copy_list.append(current_node.get_data())
+                current_node = current_node._next
                 current_index += 1
-        return self.result
+        return copy_list
 
     def __repr__(self):
-        next_node = self.head
+        current_node = self.head
         result = ''
-        while next_node:
-            result += f'{str(next_node.get_data())} --> '
-            next_node = next_node.get_next()
+        if self.size < 1:
+            result = 'None'
+        elif self.size == 1:
+            result = str(current_node.get_data())
+        else:
+            while current_node is not None:
+                result += f'{str(current_node.get_data())} --> '
+                current_node = current_node.get_next()
         return result
 
     def __str__(self):
         return self.__repr__()
 
 
-l = UnorderedList()
-l.append(3)
-l.append(45)
-l.append(45)
-l.append(67)
-l.append(765)
-print(l)
-l.pop()
-print(l)
-print(l.index(45))
-l.insert(867, 1)
-print(l)
-print(len(l))
-print(l[4])
-print(l[2:4:1])
+linked_list = UnorderedList()
+for i in range(3, 57, 4):
+    print(f'Appending {i}')
+    linked_list.append(i)
+print(linked_list)
+print('Pop element:')
+linked_list.pop()
+print(linked_list.pop())
+print(linked_list)
+print(f'Index of 45: {linked_list.index(27)}')
+print(f'Insert 867 into 1 position: {linked_list.insert(867, 1)}')
+print(linked_list)
+print(f'Insert 999 into 1 position: {linked_list.insert(999, 1)}')
+print(linked_list)
+print(f'Lenght = {len(linked_list)}')
+print(f'2:6:1 item = {linked_list[2:6:1]} {type(linked_list)}')
+print(f'4th item = {linked_list[4]} {type(linked_list)}')
 
 
 # Task 2
@@ -158,11 +158,8 @@ class Stack:
     def __init__(self):
         self.head = None
 
-    def isempty(self):
-        if self.head is None:
-            return True
-        else:
-            return False
+    def is_empty(self):
+        return not bool(self.head)
 
     def push(self, data):
         if self.head is None:
@@ -173,23 +170,23 @@ class Stack:
             self.head = new_data
 
     def pop(self):
-        if self.isempty():
+        if self.is_empty():
             return None
         else:
             prev_node = self.head
-            self.head = self.head.next
-            prev_node.next = None
-            return prev_node.data
+            self.head = self.head._next
+            prev_node._next = None
+            return prev_node._data
 
     def __repr__(self):
         iter_node = self.head
         result = '<Stack>\n'
-        if self.isempty():
+        if self.is_empty():
             print("Stack Empty")
         else:
-            while (iter_node is not None):
-                result += (f'{iter_node.data}\n')
-                iter_node = iter_node.next
+            while iter_node is not None:
+                result += f'{iter_node._data}\n'
+                iter_node = iter_node._next
             return result
 
     def __str__(self):
@@ -211,11 +208,8 @@ class Queue:
     def __init__(self):
         self.head = None
 
-    def isempty(self):
-        if self.head is None:
-            return True
-        else:
-            return False
+    def is_empty(self):
+        return not bool(self.head)
 
     def push(self, data):
         if self.head is None:
@@ -226,7 +220,7 @@ class Queue:
             self.head = new_data
 
     def get(self):
-        if self.isempty():
+        if self.is_empty():
             return None
         else:
             current_node = self.head
@@ -240,12 +234,12 @@ class Queue:
     def __repr__(self):
         iter_node = self.head
         result = '<Queue>\n'
-        if self.isempty():
+        if self.is_empty():
             print("Queue Empty")
         else:
-            while (iter_node is not None):
-                result += (f'{iter_node.data}\n')
-                iter_node = iter_node.next
+            while iter_node is not None:
+                result += f'{iter_node._data}\n'
+                iter_node = iter_node._next
             return result
 
     def __str__(self):
