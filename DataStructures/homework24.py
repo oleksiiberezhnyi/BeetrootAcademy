@@ -71,6 +71,15 @@ def balanced_brackets(sequence):
 
 
 print(balanced_brackets('print(reverse_order("Hello World!")'))
+print(balanced_brackets(''))
+
+
+def test():
+    for i in range(100):
+        print(i)
+
+
+test()
 
 
 # Task 3
