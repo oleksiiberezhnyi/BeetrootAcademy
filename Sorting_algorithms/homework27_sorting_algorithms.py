@@ -8,7 +8,7 @@ def bubble_sort_in_both_directions(arr):
     start = 0
     stop = len(arr) - 1
     reverse_directions = True
-    while reverse_directions is True:
+    while reverse_directions:
         reverse_directions = False
         for i in range(start, stop):
             if arr[i] > arr[i + 1]:
