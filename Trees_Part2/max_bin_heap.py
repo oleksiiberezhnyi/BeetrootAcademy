@@ -50,9 +50,9 @@ class MaxBinHeap:
     def __str__(self):
         result = ''
         for i in range(0, self.size // 2):
-            result += f'left {str(self.heap_list[2 * i - 1])} | ' \
+            result += f'left {str(self.heap_list[2 * i + 1])} | ' \
                       f'root {str(self.heap_list[2 * i])} | ' \
-                      f'right {str(self.heap_list[2 * i + 1])}\n'
+                      f'right {str(self.heap_list[2 * i + 2])}\n'
         return result
 
 
