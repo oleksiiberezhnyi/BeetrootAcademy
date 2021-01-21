@@ -3,46 +3,46 @@ from collections import defaultdict
 
 class Graph:
 
-    def __init__(self, vertex):
-        self.V = vertex
+    def __init__(self, count_of_vertex):
+        self.count = count_of_vertex
         self.graph = defaultdict(list)
 
-    def add_edge(self, s, d):
-        self.graph[s].append(d)
+    def add_edge(self, start, end):
+        self.graph[start].append(end)
 
-    def dfs(self, d, visited_vertex):
-        visited_vertex[d] = True
-        print(f'|{d}|', end='')
-        for i in self.graph[d]:
+    def dfs(self, vertex, visited_vertex):
+        visited_vertex[vertex] = True
+        print(f'|{vertex}|', end='')
+        for i in self.graph[vertex]:
             if not visited_vertex[i]:
                 self.dfs(i, visited_vertex)
 
-    def fill_order(self, d, visited_vertex, stack):
-        visited_vertex[d] = True
-        for i in self.graph[d]:
+    def fill_order(self, vertex, visited_vertex, stack):
+        visited_vertex[vertex] = True
+        for i in self.graph[vertex]:
             if not visited_vertex[i]:
                 self.fill_order(i, visited_vertex, stack)
-        stack = stack.append(d)
+        stack = stack.append(vertex)
 
     def transpose(self):
-        g = Graph(self.V)
+        graph_transpose = Graph(self.count)
         for i in self.graph:
             for j in self.graph[i]:
-                g.add_edge(j, i)
-        return g
+                graph_transpose.add_edge(j, i)
+        return graph_transpose
 
     def print_scc(self):
         stack = []
-        visited_vertex = [False] * self.V
-        for i in range(self.V):
+        visited_vertex = [False] * self.count
+        for i in range(self.count):
             if not visited_vertex[i]:
                 self.fill_order(i, visited_vertex, stack)
-        gr = self.transpose()
-        visited_vertex = [False] * self.V
+        graph = self.transpose()
+        visited_vertex = [False] * self.count
         while stack:
             i = stack.pop()
             if not visited_vertex[i]:
-                gr.dfs(i, visited_vertex)
+                graph.dfs(i, visited_vertex)
                 print("")
 
 
