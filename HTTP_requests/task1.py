@@ -1,10 +1,12 @@
 import requests
 
 
-url = 'https://www.wikipedia.org/robots.txt'
+URL = 'https://www.wikipedia.org/robots.txt'
 
-response = requests.get(url).content.decode()
+response = requests.get(URL)
 
-with open('robots.txt', 'a+') as f:
-    f.write(response)
-    f.close()
+if response.status_code == '200':
+    with open('robots.txt', 'a+') as f:
+        f.write(response.text)
+else:
+    print(f'Error: {response.status_code}')
