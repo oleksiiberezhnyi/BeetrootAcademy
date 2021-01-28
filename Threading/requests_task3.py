@@ -32,16 +32,16 @@ author_list = ['SweetReptile',
                'bradg2415'
                ]
 
-thread_list = []
+threads = []
 
 for author in author_list:
     params = {'size': 5, 'author': author, 'fields': ('author', 'body', 'created_utc')}
-    thread = CommentsDownload(author, params)
-    thread.start()
-    thread_list.append(thread)
+    comments_thread = CommentsDownload(author, params)
+    comments_thread.start()
+    threads.append(comments_thread)
 
-for th in thread_list:
-    th.join()
+for thread in threads:
+    thread.join()
 
 with open(FILE, 'rb+') as file:
     file.seek(-2, os.SEEK_END)
