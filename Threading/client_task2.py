@@ -1,12 +1,24 @@
 import socket
+from server_task2 import Style
 
 IP = '127.0.0.1'
 PORT = 3003
 
 
-while True:
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        sock.connect((IP, PORT))
-        sock.sendall(input("input:").encode())
-        data = sock.recv(2048)
-        print(f'Recieved: {data.decode()}')
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+    try:
+        client.connect((IP, PORT))
+        while True:
+            client.send(input("input:").encode())
+            data = client.recv(2048)
+            print(f'Recieved: {data.decode()}')
+    except KeyboardInterrupt:
+        print(f'{Style.YELLOW}'
+              f'\nBye...'
+              f'{Style.END}'
+              )
+    except Exception:
+        print(f'{Style.YELLOW}'
+              f'\nOops...'
+              f'{Style.END}'
+              )
