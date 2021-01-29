@@ -1,5 +1,3 @@
-import json
-import os
 import asyncio
 import aiohttp
 import aiofiles
@@ -15,26 +13,24 @@ author_list = ['SweetReptile',
                'AdelineKraxx',
                'bradg2415'
                ]
-
-
 loop = asyncio.get_event_loop()
-connector = aiohttp.TCPConnector(ssl=False, loop=loop)
-session = aiohttp.ClientSession(loop=loop, connector=connector)
 
-async def main():
-    for author in author_list:
-        params = {'size': 5, 'author': author, 'fields': ('author', 'body', 'created_utc')}
-        async with session.get(URL, params=params) as response:
-            assert response.ok is True
+
+async def proceed_author(author):
+    async with aiohttp.TCPConnector(ssl=False, loop=loop) as connector:
+        params = {'size': 5, 'author': author,
+                  'fields': ('author', 'body', 'created_utc')}
+        async with aiohttp.ClientSession(loop=loop, connector=connector).get(
+                URL, params=params) as response:
             data = await response.text()
             async with aiofiles.open(FILE, 'a') as file:
                 await file.write(data)
-                # json.dump(json.loads(data), file, indent=4)
                 await file.write(',\n')
 
-    with open(FILE, 'rb+') as file:
-        file.seek(-2, os.SEEK_END)
-        file.truncate()
+
+async def main():
+    args = [proceed_author(author) for author in author_list]
+    await asyncio.gather(*args, loop=loop)
 
 
 if __name__ == '__main__':
