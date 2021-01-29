@@ -1,4 +1,3 @@
-import asyncio
 import multiprocessing
 import time
 
@@ -38,10 +37,11 @@ def cubic(n):
     return result
 
 
-n = 10
+n = 999
 
 
 def main_multiprocess():
+    start_time = time.time()
 
     fibonacci_process = multiprocessing.Process(target=fibonacci, args=(n, ))
     factorial_process = multiprocessing.Process(target=factorial, args=(n, ))
@@ -58,11 +58,6 @@ def main_multiprocess():
     square_process.join()
     cubic_process.join()
 
-    start_time = time.time()
-    print('Fibonacci: ', fibonacci_process)
-    print('Factorial: ', factorial_process)
-    print('Squares: ', square_process)
-    print('Cubics', cubic_process)
     end_time = time.time()
     print(f'Total time: {end_time - start_time}')
 
