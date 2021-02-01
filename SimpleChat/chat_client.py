@@ -17,10 +17,10 @@ class Style:
     END = '\033[0m'
 
 
-IP = '10.10.1.64'
-PORT = 9091
+IP = '127.0.0.1'
+PORT = 3003
 
-print(datetime.datetime.utcnow().strftime('[%Y-%m-%d %H:%M:%S]'))
+users = set()
 
 
 class Connection(threading.Thread):
@@ -31,6 +31,7 @@ class Connection(threading.Thread):
 
     def run(self):
         while True:
+            date = datetime.datetime.utcnow().strftime('[%Y-%m-%d %H:%M:%S]')
             data = client.recv(1024)
             if len(data) == 0:
                 continue
@@ -40,26 +41,32 @@ class Connection(threading.Thread):
             if 'error' in data_decode:
                 print(f'Error: {data_decode["error"]["code"]}')
             else:
+                if data_decode.get("recipient"):
+                    users.add(data_decode.get("recipient"))
                 print(
-                    f'{datetime.datetime.utcnow().strftime("[%Y-%m-%d %H:%M:%S]")}'
+                    f'{date}'
                     f'{data_decode["user_name"]}'
                     f'{data_decode["message"]}')
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
-    # try:
-    id = 1
-    users = []
-    user_name = 'Oleksii'
-    users.append(user_name)
-    client.connect((IP, PORT))
-    while True:
-        message = input('message: ')
-        data_to_all = {'user_name': user_name,
-                       'message': message,
-                       'recipient': 'Ivan2'
-                       }
-        client.send(json.dumps(data_to_all).encode())
+    try:
+        id = 1
+        user_name = 'Oleksii'
+        users.add(user_name)
+        client.connect((IP, PORT))
+        Connection(client).start()
+        while True:
+            date = datetime.datetime.utcnow().strftime('[%Y-%m-%d %H:%M:%S]')
+            message = input(f'{date} message: ')
+            recipient = message.find()
+            data_to_all = {'user_name': user_name,
+                           'message': message,
+                           'recipient': ''
+                           }
+            client.send(str(data_to_all).encode())
+    except:
+        client.close()
 
 #     # except KeyboardInterrupt:
 #     #     print(f'{Style.YELLOW}'
