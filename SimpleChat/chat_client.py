@@ -20,8 +20,6 @@ class Style:
 IP = '127.0.0.1'
 PORT = 3003
 
-users = set()
-
 
 class Connection(threading.Thread):
 
@@ -35,36 +33,36 @@ class Connection(threading.Thread):
             data = client.recv(1024)
             if len(data) == 0:
                 continue
-            data_decode = json.loads(data).decode()
-            print(data)
-            print(data_decode)
+            data_decode = json.loads(data.decode())
             if 'error' in data_decode:
                 print(f'Error: {data_decode["error"]["code"]}')
             else:
-                if data_decode.get("recipient"):
-                    users.add(data_decode.get("recipient"))
                 print(
-                    f'{date}'
-                    f'{data_decode["user_name"]}'
-                    f'{data_decode["message"]}')
+                    f'{date} '
+                    f'{data_decode["user_name"]}: '
+                    f'{data_decode["message"]}'
+                )
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+    user_name = input('Enter your name: ')
     try:
-        id = 1
-        user_name = 'Oleksii'
-        users.add(user_name)
         client.connect((IP, PORT))
         Connection(client).start()
         while True:
             date = datetime.datetime.utcnow().strftime('[%Y-%m-%d %H:%M:%S]')
-            message = input(f'{date} message: ')
-            recipient = message.find()
-            data_to_all = {'user_name': user_name,
-                           'message': message,
-                           'recipient': ''
-                           }
-            client.send(str(data_to_all).encode())
+            message = input()
+            if message.find('@') >= 0:
+                recipient = message[message.find('@') + 1: message.find(':')]
+                data_to_all = {'user_name': user_name,
+                               'message': message[message.find(':'):],
+                               'recipient': recipient
+                               }
+            else:
+                data_to_all = {'user_name': user_name,
+                               'message': message
+                               }
+            client.send(json.dumps(data_to_all).encode())
     except:
         client.close()
 

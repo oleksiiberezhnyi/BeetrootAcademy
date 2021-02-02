@@ -1,154 +1,78 @@
 import socket
-import sys
-import json
-from typing import Tuple, List
-from dataclasses import dataclass, field
 import threading
 import logging
+import json
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-logging.basicConfig(
-    format="[%(asctime)s] [%(levelname)s] {%(filename)s:%(lineno)d} {%(process)d:%(threadName)s} - %(message)s")
+logging.basicConfig(format="{%(process)d:%(threadName)s} - %(message)s")
 
 
-@dataclass(unsafe_hash=False, eq=False)
-class Client:
-    connection: socket.socket
-    addr: Tuple[str, int]
-    name: str = field(default='')
-
-    def __eq__(self, other):
-        if not isinstance(other, Client):
-            return False
-        return self.name == other.name
-
-
-@dataclass
-class Error:
-    code: int
-
-    def as_dict(self):
-        return dict(
-            error=dict(
-                code=self.code
-            )
-        )
+class Style:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
 
 
-@dataclass
-class Message:
-    message: str
-    user_name: str
-    recipient: str = field(default='')
+class ClientConnectionThread(threading.Thread):
 
-    def as_dict(self):
-        data = dict(
-            user_name=self.user_name,
-            message=self.message,
-            recipient=self.recipient
-        )
-        if not self.recipient:
-            del data['recipient']
-        return data
-
-    @classmethod
-    def raw(cls, data: str):
-        try:
-            data = json.loads(data.replace('\'', '"'))
-        except Exception:
-            logger.warning(f'Can not parse message: {data}, {type(data)}')
-            return None
-        logger.debug(f'Encoded data: {data}')
-        return cls(
-            message=data.get('message'),
-            user_name=data.get('user_name'),
-            recipient=data.get('recipient')
-        )
-
-
-class Chat:
-    clients: List[Client] = []
-
-    class ClientProcessor(threading.Thread):
-        def __init__(self, client: Client):
-            super().__init__()
-            self._client = client
-
-        def run(self, *args, **kwargs):
-            data = self._client.connection.recv(1024)
-            while data:
-                message: Message = Message.raw(data.decode())
-                if message:
-                    if not self._check_name(message):
-                        self._client.connection.send(
-                            str(Error(403).as_dict()).encode())
-                    else:
-                        Chat.send_message(self._client, message)
-                else:
-                    self._client.connection.send(
-                        str(Error(402).as_dict()).encode())
-                data = self._client.connection.recv(1024)
-            else:
-                logger.info(
-                    f'Closed: {self._client.addr[0]}:{self._client.addr[1]}')
-
-        def _check_name(self, message: Message):
-            if not self._client.name:
-                self._client.name = message.user_name
-            else:
-                for client in Chat.clients:
-                    if client.name == self._client.name:
-                        return False
-            return True
-
-    def __init__(self, address: str, port: int):
+    def __init__(self, connect: socket.socket, address: tuple):
+        super().__init__()
+        self._socket = connect
         self._address = address
-        self._port = port
+        logger.info(f'{Style.BLUE}'
+                    f'Connection from'
+                    f'{self._address[0]}:'
+                    f'{self._address[1]}'
+                    f'{Style.END}'
+                    )
 
-    def start(self):
-        with socket.socket() as s:
-            try:
-                s.bind((self._address, self._port))
-                s.listen(2)
-                while 1:
-                    connection, address = s.accept()
-                    client = Client(connection, address)
-                    Chat.clients.append(client)
-                    self.process_client(client)
-            except KeyboardInterrupt:
-                s.close()
-            except Exception as e:
-                logger.error(e)
-                print(e)
-                s.close()
-
-    def process_client(self, client: Client):
-        Chat.ClientProcessor(client).start()
-
-    @classmethod
-    def get_recipient(cls, recipient: str):
-        recipients = [client for client in cls.clients if
-                      client.name == recipient]
-        if recipients:
-            return recipients[0]
-
-    @classmethod
-    def send_message(cls, sender: Client, message: Message):
-        logger.info(f'Chat.send_message {message}, sender {sender}')
-        if message.recipient:
-            recipient: Client = cls.get_recipient(message.recipient)
-            if recipient:
-                recipient.connection.send(message.message.encode())
-            else:
-                sender.connection.send(str(Error(401).as_dict()).encode())
+    def run(self):
+        message = self._socket.recv(1024)
+        self._socket.send(message)
+        while message:
+            logger.info(f'{Style.CYAN}'
+                        f'{self._address[0]}:'
+                        f'{self._address[1]}-'
+                        f'{message.decode()}'
+                        f'{Style.END}'
+                        )
+            message = self._socket.recv(1024)
+            self._socket.send(f'send from server {message}'.encode())
         else:
-            for client in cls.clients:
-                if client == sender:
-                    continue
-                client.connection.send(str(message.as_dict()).encode())
+            logger.info(f'{Style.RED}'
+                        f'Connection from '
+                        f'{self._address[0]}:'
+                        f'{self._address[1]} '
+                        f'closed'
+                        f'{Style.END}'
+                        )
 
 
-if __name__ == '__main__':
-    chat = Chat('127.0.0.1', 3003)
-    chat.start()
+IP = '127.0.0.1'
+PORT = 3003
+
+
+with socket.socket() as server:
+    try:
+        server.bind((IP, PORT))
+        server.listen(4)
+        while True:
+            connection, address = server.accept()
+            ClientConnectionThread(connection, address).start()
+    except KeyboardInterrupt:
+        print(f'{Style.YELLOW}'
+              f'\nBye...'
+              f'{Style.END}'
+              )
+        server.close()
+    except Exception:
+        server.close()
