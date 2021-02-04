@@ -9,6 +9,7 @@ async def fibonacci(n):
     for i in range(1, n + 1):
         result.append(n1)
         n1, n2 = n2, n1 + n2
+    await asyncio.sleep(0.001)
     return result
 
 
@@ -18,6 +19,7 @@ async def factorial(n):
     for i in range(1, n + 1):
         a *= i
         result.append(a)
+    await asyncio.sleep(0.001)
     return result
 
 
@@ -26,6 +28,7 @@ async def square(n):
     for i in range(1, n + 1):
         a = i ** 2
         result.append(a)
+    await asyncio.sleep(0.001)
     return result
 
 
@@ -34,24 +37,25 @@ async def cubic(n):
     for i in range(1, n + 1):
         a = i ** 3
         result.append(a)
+    await asyncio.sleep(0.001)
     return result
 
 
-n = 999
+n = 100000
+
+
+tasks = []
+for task in [fibonacci(n), factorial(n), square(n), cubic(n)]:
+    tasks.append(task)
 
 
 async def main_asynchronous():
-    start_time = time.time()
-    fib = loop.create_task(fibonacci(n))
-    fact = loop.create_task(factorial(n))
-    sq = loop.create_task(square(n))
-    cub = loop.create_task(cubic(n))
-    await asyncio.wait([fib, fact, sq, cub])
-    end_time = time.time()
-    print(f'Total time: {end_time - start_time}')
+    await asyncio.gather(*tasks)
 
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(main_asynchronous())
-    loop.close()
+    start_time = time.time()
+    asyncio.run(main_asynchronous())
+    end_time = time.time()
+    print(f'Total time: {end_time - start_time}')
