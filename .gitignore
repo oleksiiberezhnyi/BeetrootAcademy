@@ -13,3 +13,8 @@ PyQt_Calculator/__pycache__/
 PyQt_Calculator/calculator.py
 __pycache__
 /LinkedList/LinkedList2way.py
+
+
+.mypy_cache
+.pytest_cache/
+Context_Manager/.pytest_cache/

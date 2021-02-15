@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <link type="text/css" href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet" />
+    <link type="text/css" href="{{ url_for('static', filename='SFPro/stylesheet.css')}}" rel="stylesheet" >
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {% if title %}
+                Тестовий сайт — {{ title }}
+            {% else %}
+                Тестовий сайт
+            {% endif %}
+        {% endblock %}
+    </title>
+    {% block script %}
+    {% endblock %}
+</head>
+<body>
+    <div class="main">
+        {% block main %}
+        {% endblock %}
+    </div>
+</body>
+</html>

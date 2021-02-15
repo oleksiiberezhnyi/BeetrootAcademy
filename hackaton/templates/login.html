@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{{ super() }}
+<div class="hide">
+{% for flash_message in get_flashed_messages() %}
+<div class="flash">{{ flash_message }}</div>
+{% endfor %}
+</div>
+<form>
+    <fieldset>
+        <legend>АВТОРИЗАЦІЯ</legend>
+            <p><label for="user_name" class="">Введіть ім'я:</label>
+                <input type="text" name="user_name" id="user_name" placeholder="oleksii">
+            <p><label for="password" class="">Введіть пароль:</label>
+                <input type="password" name="password" id="password" placeholder="Ваш пароль">
+            <div class="btn">
+                <button type="submit" class="btn_submit" formmethod="post" formaction="/">Увійти</button>
+                <button type="submit" class="btn_registration" formmethod="get" formaction="/register">Реєстрація</button>
+            </div>
+    </fieldset>
+</form>
+{% endblock %}
