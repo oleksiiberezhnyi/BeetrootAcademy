@@ -1,1 +1,2 @@
-CMD python3 hackaton.py
+FROM hackaton
+CMD ["python3", "./hackaton.py"]
