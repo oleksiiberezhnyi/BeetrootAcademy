@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{{ super() }}
+<div class="hide">
+{% for flash_message in get_flashed_messages() %}
+<div class="flash">{{ flash_message }}</div>
+{% endfor %}
+</div>
+<form>
+    <fieldset>
+        <legend>ЧАТ</legend>
+            <p><label for="message" class="">Введіть повідомлення:</label>
+                <textarea name="message" id="message" placeholder="Привіт"></textarea>
+            <div class="btn">
+                <button type="submit" class="btn_submit" formmethod="post" formaction="/chat">Надіслати</button>
+            </div>
+    </fieldset>
+</form>
+<div class="chat">
+    {% for message in messages %}
+    <div class="chat_message">
+    <p><div class="chat_date">{{ message.date[1:-1] }}</div>
+    <div class="chat_name">{{ message.user_name }}</div>
+    <p style="font-weight: 500">{{ message.message }}</div>
+    {% endfor %}
+</div>
+{% endblock %}
