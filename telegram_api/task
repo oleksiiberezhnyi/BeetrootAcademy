@@ -1,0 +1,36 @@
+    Список покупок (телеграм)
+/start - входная точка для бота
+- Выводить все списки покупок которые есть для текущего пользователя (/list)
+- Удалять существующие
+- Создавать новый со своим именем: (/n or /new -> ввод имени)
+  - Добавлять новые товары с их количеством (/a or /add)
+  - Удалять товары после покупок (/d or /del or /delete)
+Таблицы:
+ Юзер (id, tg_user_id)
+ ЛистПокупок (id, name, user.id) UNIQUE(name, user.id)
+ Товары (id, name, list.id, cnt) UNIQUE(name, list.id)
+@dataclass
+class User:
+    id: int
+    def add_list(self):
+        raise NotImplemented
+    def del_list(self):
+        raise NotImplemented
+    def lists(self):
+        raise NotImplemented
+    def change_list(self):
+        raise NotImplemented
+@dataclass
+class GoodsList:
+    id: int
+    name: str
+    def add_item(self, name: str, qty: int):
+        raise NotImplemented
+    def del_item(self, name: str):
+        raise NotImplemented
+    def lists(self):
+        raise NotImplemented
+class Good:
+    id: int
+    name: str
+    qty: float
