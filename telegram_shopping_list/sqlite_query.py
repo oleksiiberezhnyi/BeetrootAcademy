@@ -1,11 +1,10 @@
 from sqlalchemy import create_engine, desc
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, VARCHAR, REAL
+from sqlalchemy import Column, Integer, VARCHAR, REAL, TEXT
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.sql import func
 
 
-engine = create_engine("sqlite:///shopping_list.db", echo=True)
+engine = create_engine("sqlite:///shopping_list.db", echo=False)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -32,7 +31,7 @@ class Lists(Base):
     __tablename__ = "lists"
 
     id = Column(Integer, primary_key=True, nullable=False)
-    title = Column(VARCHAR(80), nullable=False)
+    title = Column(TEXT, nullable=False)
     user_tg_id = Column(Integer, nullable=False)
 
     def __repr__(self):
@@ -52,7 +51,7 @@ class Goods(Base):
     __tablename__ = "goods"
 
     id = Column(Integer, primary_key=True, nullable=False)
-    name = Column(VARCHAR(80), nullable=False)
+    name = Column(TEXT, nullable=False)
     quantity = Column(REAL, default=1)
     list_id = Column(Integer, nullable=False)
 
@@ -76,10 +75,6 @@ def db_create(engine):
     Base.metadata.create_all(engine)
 
 
-users = Users()
-lists = Lists()
-goods = Goods()
-
 def db_clear():
     for _ in session.query(Users).all():
         session.delete(_)
@@ -91,29 +86,32 @@ def db_clear():
 
 
 def check_user(telegram_id):
-    if session.query(Users).\
+    return session.query(Users).\
             filter(Users.telegram_id == telegram_id).\
-            count() == 0:
-        add_user(telegram_id)
+            count() == 0
 
 
 def add_user(telegram_id):
-    new_user = Users(telegram_id=telegram_id)
-    try:
-        session.add(new_user)
-        session.commit()
-    except:
-        session.rollback()
+    if check_user(telegram_id):
+        new_user = Users(telegram_id=telegram_id)
+        try:
+            session.add(new_user)
+            session.commit()
+        except:
+            session.rollback()
 
 
-def check_list_name(title, user_tg_id):
-    if session.query(Lists.title).\
-            filter(Lists.user_tg_id == user_tg_id, Lists.title == title).\
-            count() == 0:
-        create_list(title, user_tg_id)
+# def check_list_name(title, user_tg_id):
+#     try:
+#         return session.query(Lists.id).\
+#             filter(Lists.user_tg_id == user_tg_id, Lists.title == title).\
+#             count()
+#     except:
+#         return False
 
 
 def create_list(title, user_tg_id):
+    # if check_list_name(title, user_tg_id) is False:
     new_list = Lists(title=title, user_tg_id=user_tg_id)
     try:
         session.add(new_list)
@@ -123,13 +121,16 @@ def create_list(title, user_tg_id):
 
 
 def view_all_lists(user_tg_id):
-    return session.query(Lists.title).\
-        filter(Lists.user_tg_id == user_tg_id).\
-        all()
+    try:
+        return session.query(Lists.id, Lists.title).\
+            filter(Lists.user_tg_id == user_tg_id).\
+            all()
+    except:
+        list()
 
 
 def view_list(title, user_tg_id):
-    return session.query(Lists.title).\
+    return session.query(Lists).\
         filter(Lists.user_tg_id == user_tg_id, Lists.title == title).\
         all()
 
@@ -149,17 +150,40 @@ def delete_list(title, user_tg_id):
     temp = session.query(Lists).\
             filter(Lists.user_tg_id == user_tg_id, Lists.title == title).\
             all()
-        session.delete(temp)
+    session.delete(temp)
     try:
         session.commit()
     except:
         session.rollback()
 
 
-def add_goods(name, count, list_id):
-    pass
+def add_goods(name, list_id, count = 1):
+    new_good = Goods(name=name, list_id=list_id, count=count)
+    try:
+        session.add(new_good)
+        session.commit()
+    except:
+        session.rollback()
+
+def get_list_id(user_tg_id, title):
+    return session.query(Lists.id).\
+            filter(Lists.user_tg_id == user_tg_id, Lists.title == title).first()
+
+def view_all_goods(list_id):
+    return session(Goods).\
+            filter(Goods.list_id == list_id).\
+            all()
 
 
 def delete_goods(name, list_id):
     pass
 
+
+if __name__ == "__main__":
+    # print(check_user(123))
+    # add_user(123)
+    # print(check_list_name("test1", 123))
+    # create_list("test1", 123)
+    # db_create(engine)
+    print(view_all_lists(123))
+    pass
